@@ -13,9 +13,10 @@
 
 
 This script returns primes LESS than the starting number.
+
 ##Installation or requirements
-Install the requirements before running
-`pip install -r requirements.txt`
+- Install the requirements before running
+- `pip install -r requirements.txt`
 
 ## Run script
 `python -m prime_finder`
@@ -29,4 +30,5 @@ To test run:
 - I have used type annotations to ensure the input is an int.
 - I have added error handling.
 - Requirements.txt file was built using `pip-compile requirements.in`
+- black was run against the code as was isort
 

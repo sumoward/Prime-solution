@@ -10,6 +10,7 @@ The numbers that remain are Prime.
 https://en.wikipedia.org/wiki/Eratosthenes
 """
 from itertools import compress
+from math import isqrt
 
 
 def prime_solution(starting_number: int):
@@ -21,7 +22,6 @@ def prime_solution(starting_number: int):
     :param starting_number: the upper bound of our search
     :return: primes: a list of primes
     """
-    primes = []
     if type(starting_number) is not int:
         raise ValueError(" This system requires an integer.")
     # check for negative
@@ -30,6 +30,7 @@ def prime_solution(starting_number: int):
     # 1 is not a prime we can immediately return an empty list.
     # If the starting number is 2 we can immediately return an empty list
     # as we are returning primes less than 2 and there are none.
+    primes = []
     if starting_number <= 3:
         return primes
 
@@ -40,14 +41,12 @@ def prime_solution(starting_number: int):
     # 1 is not a prime
     primes[1] = False
 
-    prime = 2
-    while (prime * prime) <= starting_number:
+    for prime in range(2, isqrt(starting_number) + 1):
         #  if this has not changed, it is a prime
         if primes[prime]:
             # its multiples should be updated as they are not primes
             for i in range(prime * 2, starting_number, prime):
                 primes[i] = False
-        prime += 1
 
     #  compress is more efficient for bigger lists
     all_primes = list(compress(range(len(primes)), primes))
@@ -58,5 +57,9 @@ def prime_solution(starting_number: int):
 
 if __name__ == "__main__":
     # change this if you wish
-    start_number = 30
+    import time
+    start = time.perf_counter()
+    start_number = 300000
     prime_solution(start_number)
+    elapsed = time.perf_counter() - start
+    print(elapsed)

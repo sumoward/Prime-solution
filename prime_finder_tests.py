@@ -27,3 +27,4 @@ def test_prime_solution():
     assert prime_solution(6) == [2, 3, 5]
     assert prime_solution(29) == [2, 3, 5, 7, 11, 13, 17, 19, 23]
     assert prime_solution(30) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    assert prime_solution(300000)[-1] == 299993

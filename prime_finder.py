@@ -9,8 +9,11 @@ The numbers that remain are Prime.
 
 https://en.wikipedia.org/wiki/Eratosthenes
 """
+import time
 from itertools import compress
 from math import isqrt
+
+import numpy as np
 
 
 def prime_solution(starting_number: int):
@@ -35,7 +38,7 @@ def prime_solution(starting_number: int):
         return primes
 
     # there are multiple possible solutions I have gone with the sieve of Eratosthenes
-    primes = [True for number in range(starting_number)]
+    primes = np.full(starting_number, True, dtype=bool)
     # zero is not a prime
     primes[0] = False
     # 1 is not a prime
@@ -57,7 +60,6 @@ def prime_solution(starting_number: int):
 
 if __name__ == "__main__":
     # change this if you wish
-    import time
     start = time.perf_counter()
     start_number = 30000000
     prime_solution(start_number)

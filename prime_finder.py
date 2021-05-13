@@ -51,7 +51,7 @@ def prime_solution(starting_number: int):
     #  compress is more efficient for bigger lists
     all_primes = list(compress(range(len(primes)), primes))
     # todo add logging
-    print(all_primes)
+    # print(all_primes)
     return all_primes
 
 
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # change this if you wish
     import time
     start = time.perf_counter()
-    start_number = 300000
+    start_number = 30000000
     prime_solution(start_number)
     elapsed = time.perf_counter() - start
     print(elapsed)

@@ -38,12 +38,14 @@ def prime_solution(starting_number: int):
         return primes
 
     # there are multiple possible solutions I have gone with the sieve of Eratosthenes
+    # user numpy here as it more efficiently builds large arrays
     primes = np.full(starting_number, True, dtype=bool)
     # zero is not a prime
     primes[0] = False
     # 1 is not a prime
     primes[1] = False
 
+    # we only need to check up to the square root of the starting number to validate
     for prime in range(2, isqrt(starting_number) + 1):
         #  if this has not changed, it is a prime
         if primes[prime]:
@@ -53,7 +55,7 @@ def prime_solution(starting_number: int):
 
     #  compress is more efficient for bigger lists
     all_primes = list(compress(range(len(primes)), primes))
-    # todo add logging
+    # remove the print as it slows performance
     # print(all_primes)
     return all_primes
 

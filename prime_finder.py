@@ -12,6 +12,7 @@ https://en.wikipedia.org/wiki/Eratosthenes
 import time
 from itertools import compress
 from math import isqrt
+import primesieve
 
 import numpy as np
 
@@ -59,11 +60,27 @@ def prime_solution(starting_number: int):
     # print(all_primes)
     return all_primes
 
+def get_primes(n):
+    """ Input n>=6, Returns a array of primes, 2 <= p < n."""
+    sieve = np.ones(n // 3 + (n % 6 == 2), dtype=np.bool)
+    for i in range(1, int(n ** 0.5) // 3 + 1):
+        if sieve[i]:
+            k = 3 * i + 1 | 1
+            sieve[k * k // 3::2 * k] = False
+            sieve[k * (k - 2 * (i & 1) + 4) // 3::2 * k] = False
+    return np.r_[2, 3, ((3 * np.nonzero(sieve)[0][1:] + 1) | 1)]
+
+def get_primes_via_import(start_number):
+    """use a package built for primes."""
+    return primesieve.primes(start_number)
+
 
 if __name__ == "__main__":
     # change this if you wish
     start = time.perf_counter()
     start_number = 30000000
-    prime_solution(start_number)
+    # prime_solution(start_number)
+    # get_primes(start_number)
+    get_primes_via_import(start_number)
     elapsed = time.perf_counter() - start
     print(elapsed)
